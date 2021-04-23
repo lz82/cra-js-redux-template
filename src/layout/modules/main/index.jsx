@@ -1,15 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import PageFooter from '@/components/page-footer';
+import { RouterMain } from '@/router';
 import { selectMenuCollapsed } from '@/store/modules/app';
 // import { useHistory } from "react-router-dom";
 import { Layout, Menu } from 'antd';
-import PageFooter from '@/components/page-footer';
-import { RouterMain } from '@/router';
-
-import css from './index.module.less';
-
-import UserPanel from './components/user-panel';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import MenuToggle from './components/menu-toggle';
+import UserPanel from './components/user-panel';
+import css from './index.module.less';
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
@@ -49,7 +47,7 @@ const LayoutMain = (props) => {
 
   return (
     <Layout>
-      <Sider className={css['sider']} collapsed={menuCollapsed}>
+      <Sider className={css['sider']} collapsed={menuCollapsed} theme="light">
         <Menu
           theme="light"
           mode="inline"

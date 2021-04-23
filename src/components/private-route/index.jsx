@@ -1,7 +1,7 @@
+import { selectToken } from '@/store/modules/app';
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { Route, Redirect, useLocation, useHistory } from 'react-router-dom';
-import { selectToken } from '@/store/modules/app';
+import { Redirect, Route, useHistory, useLocation } from 'react-router-dom';
 // import { getToken } from "@/utils/auth";
 
 const PrivateRoute = ({ render, ...rest }) => {
@@ -25,8 +25,8 @@ const PrivateRoute = ({ render, ...rest }) => {
             to={{
               pathname: '/login',
               state: {
-                from: pathname + search
-              }
+                from: pathname + search,
+              },
             }}
           />
         )

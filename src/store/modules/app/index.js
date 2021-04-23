@@ -1,6 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { getToken, setToken as setTokenInCookie } from '@/utils/auth';
 import { appApi } from '@/services';
+import { getToken, removeToken, setToken as setTokenInCookie } from '@/utils/auth';
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   token: getToken(),
@@ -8,9 +8,9 @@ const initialState = {
   userInfo: {
     username: 'lz',
     age: 18,
-    gender: 'M'
+    gender: 'M',
   },
-  menuCollapsed: false
+  menuCollapsed: false,
 };
 
 export const appSlice = createSlice({
@@ -38,18 +38,11 @@ export const appSlice = createSlice({
     },
     toggleMenuCollapsed: (state) => {
       state.menuCollapsed = !state.menuCollapsed;
-    }
-  }
+    },
+  },
 });
 
-export const {
-  setToken,
-  clearToken,
-  setErrMsg,
-  clearErrMsg,
-  setUserInfo,
-  toggleMenuCollapsed
-} = appSlice.actions;
+export const { setToken, clearToken, setErrMsg, clearErrMsg, setUserInfo, toggleMenuCollapsed } = appSlice.actions;
 
 // The function below is called a thunk and allows us to perform async logic. It
 // can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This
@@ -69,6 +62,16 @@ export const getUserInfo = (token) => async (dispatch) => {
   try {
     const res = await appApi.getUserInfoByToken(token);
     dispatch(setUserInfo(res));
+  } catch (err) {
+    dispatch(setErrMsg(err.toString()));
+  }
+};
+
+export const logout = () => async (dispatch) => {
+  try {
+    await appApi.logout();
+    removeToken();
+    dispatch(clearToken());
   } catch (err) {
     dispatch(setErrMsg(err.toString()));
   }

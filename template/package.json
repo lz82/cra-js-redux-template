@@ -34,12 +34,6 @@
     "cz": "git add . & git-cz",
     "cloc": "cloc --exclude-dir='node_modules' . "
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
   "browserslist": {
     "production": [
       ">0.2%",

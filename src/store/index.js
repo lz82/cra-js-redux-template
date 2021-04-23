@@ -3,6 +3,6 @@ import reducer from './modules';
 
 export const store = configureStore({
   reducer: {
-    ...reducer
-  }
+    ...reducer,
+  },
 });

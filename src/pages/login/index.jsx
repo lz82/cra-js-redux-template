@@ -1,17 +1,9 @@
+import { checkLogin, clearErrMsg, getUserInfo, selectErrMsg, selectToken } from '@/store/modules/app';
+import { KeyOutlined, UserOutlined } from '@ant-design/icons';
+import { Button, Form, Input, message } from 'antd';
 import React, { useEffect } from 'react';
-import { Form, Input, Button, message } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import {
-  checkLogin,
-  getUserInfo,
-  selectToken,
-  selectErrMsg,
-  clearErrMsg,
-  setErrMsg
-} from '@/store/modules/app';
-import { UserOutlined, KeyOutlined } from '@ant-design/icons';
-
 import css from './index.module.less';
 
 const Login = () => {
@@ -21,18 +13,14 @@ const Login = () => {
   const history = useHistory();
 
   const onLogin = async (value) => {
-    try {
-      dispatch(checkLogin(value));
-    } catch (err) {
-      dispatch(setErrMsg(err.toString()));
-    }
+    dispatch(checkLogin(value));
   };
 
   useEffect(() => {
     if (token) {
       // 根据token获取用户信息
       dispatch(getUserInfo(token));
-      history.push('/admin/home');
+      history.push('/admin/dashboard');
     }
   }, [dispatch, history, token]);
 

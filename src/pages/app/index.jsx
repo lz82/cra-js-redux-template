@@ -1,11 +1,9 @@
-import React from 'react';
-import css from './index.module.less';
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
-
-import { LayoutMain, LayoutBlank } from '@/layout';
-import { RouterBlank, RouterMain } from '@/router';
-
 import PrivateRoute from '@/components/private-route';
+import { LayoutBlank, LayoutMain } from '@/layout';
+import { RouterBlank, RouterMain } from '@/router';
+import React from 'react';
+import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
+import css from './index.module.less';
 
 const App = () => {
   const renderRouter = (router, routeProps) => {
@@ -37,7 +35,7 @@ const App = () => {
                 <Switch>
                   {RouterMain.map((router, index) => renderRouter(router, routeProps))}
                   <Redirect to="/admin/dashboard" from="/admin" exact />
-                  {/* <Redirect to="/404" /> */}
+                  <Redirect to="/404" />
                 </Switch>
               </LayoutMain>
             )}
@@ -50,24 +48,14 @@ const App = () => {
                   {RouterBlank.map((router) => {
                     return router.child && router.child.length > 0 ? (
                       router.child.map((item) => (
-                        <Route
-                          exact={!!item.exact}
-                          key={item.path}
-                          path={item.path}
-                          component={item.component}
-                        />
+                        <Route exact={!!item.exact} key={item.path} path={item.path} component={item.component} />
                       ))
                     ) : (
-                      <Route
-                        exact={!!router.exact}
-                        key={router.path}
-                        path={router.path}
-                        component={router.component}
-                      />
+                      <Route exact={!!router.exact} key={router.path} path={router.path} component={router.component} />
                     );
                   })}
-                  <Redirect exact to="/home" from="/" />
-                  {/* <Redirect to="/404" /> */}
+                  <Redirect exact to="/login" from="/" />
+                  <Redirect to="/404" />
                 </Switch>
               </LayoutBlank>
             )}

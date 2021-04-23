@@ -27,17 +27,12 @@
     "test": "craco test",
     "eject": "react-scripts eject",
     "lint:js": "eslint --ext .js --ext .tsx --ext .jsx src/ --fix",
-    "lint:style": "prettier -c --write src",
+    "lint:style": "prettier --write src",
     "lint": "concurrently yarn:lint:*",
     "postinstall": "husky install",
     "cz": "git add . & git-cz",
-    "cloc": "cloc --exclude-dir='node_modules' . "
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "cloc": "cloc --exclude-dir='node_modules' . ",
+    "prepare": "is-ci || husky install"
   },
   "browserslist": {
     "production": [
@@ -52,15 +47,37 @@
     ]
   },
   "devDependencies": {
+    "@babel/core": "^7.13.14",
+    "@babel/eslint-parser": "^7.13.14",
+    "@commitlint/cli": "^12.1.1",
+    "@commitlint/config-conventional": "^12.1.1",
     "@craco/craco": "^6.1.1",
     "cloc": "^2.7.0",
+    "commitizen": "^4.2.3",
     "concurrently": "^6.0.2",
     "craco-less": "^1.17.1",
     "craco-plugin-style-resources-loader": "^0.0.3",
-    "eslint-config-alloy": "^4.1.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^7.24.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-config-react-app": "^6.0.0",
+    "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-react": "^7.23.2",
     "git-cz": "^4.7.6",
     "husky": "^6.0.0",
+    "is-ci": "^3.0.0",
+    "lint-staged": "^10.5.4",
     "prettier": "^2.2.1"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,json}": [
+      "npx prettier --write",
+      "npx eslint"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }

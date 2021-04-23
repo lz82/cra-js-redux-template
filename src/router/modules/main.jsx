@@ -1,30 +1,29 @@
-import React from 'react';
+import Loading from '@/components/loading';
 import {
-  DashboardOutlined,
-  SettingOutlined,
-  ToolOutlined,
-  TeamOutlined,
   CompassOutlined,
-  RocketOutlined
+  DashboardOutlined,
+  RocketOutlined,
+  SettingOutlined,
+  TeamOutlined,
+  ToolOutlined,
 } from '@ant-design/icons';
 import loadable from '@loadable/component';
-
-import Loading from '@/components/loading';
+import React from 'react';
 
 const PersonCenter = loadable(() => import('@/pages/person-center'), {
-  fallback: <Loading />
+  fallback: <Loading />,
 });
 
 const DashBoard = loadable(() => import('@/pages/dashboard'), {
-  fallback: <Loading />
+  fallback: <Loading />,
 });
 
 const Setting = loadable(() => import('@/pages/setting'), {
-  fallback: <Loading />
+  fallback: <Loading />,
 });
 
 const UserList = loadable(() => import('@/pages/user-list'), {
-  fallback: <Loading />
+  fallback: <Loading />,
 });
 
 const routerMain = [
@@ -34,7 +33,7 @@ const routerMain = [
     component: DashBoard,
     icon: DashboardOutlined,
     exact: true,
-    noMenu: false
+    noMenu: false,
   },
   {
     path: '/admin/user',
@@ -48,9 +47,9 @@ const routerMain = [
         component: UserList,
         icon: TeamOutlined,
         exact: true,
-        noMenu: false
-      }
-    ]
+        noMenu: false,
+      },
+    ],
   },
   {
     path: '/admin/mgt',
@@ -64,7 +63,7 @@ const routerMain = [
         component: Setting,
         icon: SettingOutlined,
         exact: true,
-        noMenu: false
+        noMenu: false,
       },
       {
         path: '/admin/mgt/my',
@@ -72,25 +71,10 @@ const routerMain = [
         component: PersonCenter,
         icon: CompassOutlined,
         exact: true,
-        noMenu: false
-      }
-    ]
+        noMenu: false,
+      },
+    ],
   },
-  {
-    path: '/admin/app',
-    name: '微应用管理',
-    icon: ToolOutlined,
-    noMenu: false,
-    child: [
-      {
-        path: '/admin/app/g6-editor',
-        name: 'G6Editor',
-        icon: TeamOutlined,
-        exact: true,
-        noMenu: false
-      }
-    ]
-  }
 ];
 
 export default routerMain;

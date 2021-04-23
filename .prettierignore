@@ -2,7 +2,6 @@
 node_modules/
 build/
 dist/
-src/assets/
 src/__tests__
 src/i18nResource
 src/iconResource
@@ -12,3 +11,7 @@ src/mock
 **/*.min.js
 **/*-min.js
 **/*.bundle.js
+**/*.md
+**/*.svg
+**/*.ejs
+**/*.html

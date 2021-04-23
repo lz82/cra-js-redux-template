@@ -1,14 +1,15 @@
-import React from 'react';
-import { useHistory } from 'react-router-dom';
-import classnames from 'classnames';
-
-import { Dropdown, Menu } from 'antd';
+import { logout } from '@/store/modules/app';
 import { UserOutlined } from '@ant-design/icons';
-
+import { Dropdown, Menu } from 'antd';
+import classnames from 'classnames';
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import css from './index.module.less';
 
 const UserPanel = (props) => {
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const onAvatarClick = ({ key }) => {
     if (key === '1') {
@@ -16,6 +17,7 @@ const UserPanel = (props) => {
     }
     if (key === '0') {
       // appActions.logout();
+      dispatch(logout());
     }
   };
 

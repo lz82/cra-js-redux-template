@@ -1,6 +1,6 @@
 import app from './app';
 
 const store = {
-  app
+  app,
 };
 export default store;

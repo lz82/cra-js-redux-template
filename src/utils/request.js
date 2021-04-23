@@ -23,11 +23,11 @@ export function AppGet(url, data) {
     instance
       .get(url, {
         params: {
-          ...data
+          ...data,
         },
         paramsSerializer: (params) => {
           return qs.stringify(params, { indices: false });
-        }
+        },
       })
       .then((res) => {
         if (res.data.code === 200) {
@@ -49,7 +49,7 @@ export function AppUpload(url, data) {
   return new Promise((resolve, reject) => {
     instance
       .post(url, data, {
-        headers: 'multipart/form-data'
+        headers: 'multipart/form-data',
       })
       .then((res) => {
         if (res.data.code === 200) {
@@ -66,7 +66,7 @@ export function AppDownload(url) {
   return new Promise((resolve, reject) => {
     instance
       .get(url, {
-        responseType: 'blob'
+        responseType: 'blob',
       })
       .then((res) => {
         if (res && res.status !== 200) {
